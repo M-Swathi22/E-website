@@ -1,0 +1,18 @@
+# created by virtualenv automatically
+#python cache files
+__pycache__/
+*.pyc
+
+#SQLite database
+*.sqlite3
+
+#VS Code/ PyCharm settings
+.vscode/
+.idea/
+
+# virtual environment
+venv/
+env/
+
+#Sensitive Django settings
+ecommerce/settings_local.py
