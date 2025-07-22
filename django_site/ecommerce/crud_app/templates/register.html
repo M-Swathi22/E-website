@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title>Signup</title>
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #f4f4f9;
+                height:100hv;
+            
+
+            }
+            .form-cont{
+                background-color: #fff;
+                padding: 20px 30px;
+                border-radius: 10px;
+                width: 300px;
+            }
+            .form-grp{
+                margin-bottom: 15px;
+
+            }
+            .form-grp label{
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            .form-grp input{
+                width: 100%;
+                padding:10px;
+                border:1px solid #ddd;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+            .form-button{
+                text-align: center;
+            }
+            .form-button button{
+                padding:10px 15px;
+                background-color: #007bff;
+                color:#fff;
+                border:none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor:pointer;
+            }
+            .form-button button:hover{
+                background-color: #0056b3;
+            }
+            #d1{
+                position: absolute;
+                top:30%;
+                left:40%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="d1" >
+        <div class="form-cont">
+            <h2 style="text-align: center; font-size: 24px; margin-bottom: 20px ; ">Signup</h2>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li style="color: red;">{{message}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-grp">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" required/>
+                </div>
+                <div class="form-grp">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" required/>
+                </div>
+                <div class="form-grp">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" required/>
+                </div>
+                <div class="form-button">
+                    <button type="submit">Signup</button>
+                </div>
+            </div>
+            
+            </form>
+            <br><br>
+            <a href="{% url 'login' %}">Already have an Account? Login</a>
+
+
+        </div>
+    </body>
+</html>

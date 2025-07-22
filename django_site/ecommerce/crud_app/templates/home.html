@@ -1,0 +1,42 @@
+{% load static %}
+<html>
+    <head>
+        <title>Shopfinity | Categories</title>
+        <style>
+            .category-container{
+                display: grid;
+                grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+                gap: 20px;
+                padding: 20px;
+            }
+            .category-box{
+                border: 1px solid #ccc;
+                padding: 10px;
+                text-align:center;
+                border-radius: 10px;
+                box-shadow: 2px 2px 8px rgba(0,0, 0, 0.1);
+            }
+            .category-box h3{
+                margin: 10px 0 5px;
+            }
+            .category-box p{
+                font-size: 14px;
+                color: #555;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align:center">Categories</h1>
+        <div class="category-container">
+            {% for category in categories %}
+            <div class="category-box">
+                <a href="{% url 'view_products' category.id %}">
+                    <img src="{{ category.image.url}}" alt="{{category.name}}" width="150" height="150">
+                    </a>
+                    <h3>{{ category.name }}</h3>
+                    <p>{{category.description}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
