@@ -7,7 +7,7 @@ class Customer(models.Model):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=100)
 
-    def __str__(self):
+    def __def__(self):
         return self.username
 
 
@@ -31,6 +31,33 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class Cart(models.Model):
+    user = models.ForeignKey(Customer,on_delete=models.CASCADE,null=True,blank=True)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    added_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.product.name}"
+    def total_price(self):
+        return self.quantity * self.product.price
+
+class Order(models.Model):
+    user = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    address = models.TextField()
+    phone = models.CharField(max_length=15)
+    ordered_at = models.DateTimeField(auto_now_add=True)
+    is_paid = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Order by{self.user.username}-{self.product.name}"
+
+
+
+
 
 
 # Create your models here.

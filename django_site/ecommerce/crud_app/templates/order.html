@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Place Your Order</title>
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #f9f9f9;
+                padding: 20px;
+            }
+            form{
+                background: white;
+                padding: 25px;
+                max-width: 500px;
+                margin: auto;
+                box-shadow: 0 0 10px #ccc;
+            }
+            input, textarea{
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+                padding: 10px;
+            }
+            button{
+                background-color: #28a745;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+            }
+        </style>
+        <body>
+            <h2 style="text-align: center;">Place Your Order</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p}}
+                <button type="submit">Confirm Order</button>
+            </form>
+        </body>
+    </head>
+</html>

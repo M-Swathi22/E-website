@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <style>
+            .product-detail-container{
+                display: flex;
+                align-items: flex-start;
+                gap: 30px;
+                padding: 20px;
+            }
+            .product-detail-container img{
+                width: 250px;
+                height:auto;
+                border: 1px solid #ccc;
+            }
+            .product-info h2{
+                color: green;
+            }
+            .price-original{
+                color: red;
+                text-decoration: line-through;
+            }
+            .price-offer{
+                color: green;
+                font-weight: bold;
+            }
+            .add-to-cart-btn{
+                margin-top: 15px;
+                padding: 10px 20px;
+                background-color: indianred;
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-radius: 5px;
+                cursor:pointer;
+            }
+            .add-to-cart-btn:hover{
+                background-color: indianred;
+            }
+        </style>
+    </head>
+    <body>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
+        <div class="product-detail-container">
+            <img src="{{product.image.url}}" alt="{{product.name}}" width="200">
+            <div class="product-info">
+                <h2>{{product.name}}</h2>
+                <p>{{product.description}}</p>
+                <p>Current Price: <span class="price-original">₹{{product.original_price}}</span></p>
+                <p>Offer Price: <span class="price-offer">₹{{product.price}}</span></p>
+                <form method="post" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                </form>
+                 </div>
+        </div>
+    </body>
+</html>
